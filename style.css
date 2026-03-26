@@ -114,24 +114,27 @@ textarea:not([rows]) {
 	--hamburger-height: calc(
 		var(--hamburger-bar-height) * 3 + var(--hamburger-bar-gap) * 2
 	);
+
+	--wrapper-max-width: 70rem;
+	--spacing-inline: 2em;
+	--spacing-block-start: 1.75rem;
+	--transition-default: all 0.25s ease-in;
 }
 
 /* General Styling */
-html {
-	background-color: var(--clr-neutral-100);
-}
-
 body {
 	font-family: 'Inter', sans-serif;
 	font-size: var(--fs-15px);
 	line-height: 1.7;
 	color: var(--clr-neutral-600);
+	background-color: var(--clr-neutral-100);
 }
 
 .wrapper {
-	width: min(95vw, 1110px);
+	width: min(95vw, var(--wrapper-max-width));
 	margin-inline: auto;
-	padding-top: 28px;
+	padding-inline: var(--spacing-inline);
+	padding-block-start: var(--spacing-block-start);
 }
 
 main {
@@ -164,6 +167,18 @@ main {
 	}
 }
 
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
 /* Typography */
 
 h1,
@@ -178,7 +193,7 @@ h2,
 h3,
 h4,
 p {
-	margin-top: 0;
+	margin-block-start: 0;
 }
 
 h1 {
@@ -202,8 +217,14 @@ h4 {
 }
 
 a {
-	text-decoration: none;
-	color: currentColor;
+	text-decoration: underline;
+	color: inherit; /* or your preferred color */
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
+	outline: 2px solid currentColor; /* Optional: for better focus visibility */
 }
 
 /* Header */
@@ -230,12 +251,26 @@ header {
 	gap: 40px;
 }
 
-.header-navigation li {
-	cursor: pointer;
+.header-navigation a {
+	text-decoration: none;
+	color: inherit;
+	transition:
+		color 0.2s ease,
+		background-color 0.2s ease;
+	padding: 0.25em;
+	border-radius: 2px;
 }
 
-.header-navigation li:hover {
+.header-navigation a:hover,
+.header-navigation a:focus {
 	color: var(--clr-primary-500);
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.header-navigation a:focus,
+.header-navigation a:focus-visible {
+	outline: 2px solid var(--clr-primary-500);
+	outline-offset: 2px;
 }
 
 @media (max-width: 37.5em) {
@@ -265,13 +300,15 @@ header {
 		height: var(--hamburger-bar-height);
 		background-color: var(--clr-neutral-900);
 		transform-origin: left center;
-		transition: opacity var(--animation-timing), width var(--animation-timing),
-			rotate var(--animation-timing), translate var(--animation-timing);
+		transition:
+			opacity var(--animation-timing),
+			width var(--animation-timing),
+			rotate var(--animation-timing),
+			translate var(--animation-timing);
 	}
 
 	.hamburger-menu input {
 		appearance: none;
-		pointer-events: none;
 		outline: none;
 		margin: 0;
 		padding: 0;
@@ -307,7 +344,7 @@ header {
 		flex-direction: column;
 		padding-left: 1.5rem;
 		gap: 24px;
-		margin-top: 0;
+		margin-block-start: 0;
 	}
 
 	.hamburger-menu:has(input:checked) + .header-navigation {
@@ -318,11 +355,11 @@ header {
 /* Section Main */
 
 h1 {
-	margin-bottom: 1rem;
+	margin-block-end: 1rem;
 }
 
 .main-img {
-	margin-bottom: 1.5rem;
+	margin-block-end: 1.5rem;
 }
 
 @media (min-width: 59em) {
@@ -334,11 +371,11 @@ h1 {
 	}
 
 	.main-img {
-		margin-bottom: 1.75rem;
+		margin-block-end: 1.75rem;
 	}
 
 	h1 {
-		margin-bottom: 0;
+		margin-block-end: 0;
 	}
 }
 
@@ -350,11 +387,11 @@ h1 {
 }
 
 .article {
-	padding-top: 32px;
+	padding-block-start: 32px;
 }
 
 .article:not(:last-of-type) {
-	padding-bottom: 32px;
+	padding-block-end: 32px;
 	border-bottom: 1px solid var(--clr-neutral-600);
 }
 
@@ -364,7 +401,7 @@ h1 {
 
 .new-section h3 {
 	color: var(--clr-neutral-100);
-	margin-bottom: 0.5rem;
+	margin-block-end: 0.5rem;
 }
 
 .new-section p {
@@ -410,35 +447,41 @@ h1 {
 }
 
 /* Buttons */
-.btn {
-	cursor: pointer;
-}
-
-.main-btn {
+.btn,
+a[role='button'] {
 	display: inline-block;
+	padding: 0.81rem 2rem;
 	background-color: var(--clr-primary-500);
-	text-transform: uppercase;
 	color: var(--clr-neutral-100);
+	text-transform: uppercase;
 	font-weight: 700;
 	font-size: var(--fs-14px);
 	letter-spacing: 4.38px;
-	padding: 13px 32px;
-	margin-top: 29px;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
 	transition: all ease-in 0.25s;
 }
 
-.btn:hover {
+.main-btn {
+	margin-block-start: 1.81rem;
+}
+
+.btn:hover,
+a[role='button']:hover {
+	background-color: hsl(5, 85%, 50%);
 	letter-spacing: 4px;
 }
 
-.btn:focus {
+.btn:focus,
+a[role='button']:focus {
 	outline: 2px solid var(--clr-primary-500);
 	outline-offset: 2px;
 }
 
 /* Footer */
 footer {
-	padding-bottom: 28px;
+	padding-block-end: 28px;
 }
 
 .attribution {

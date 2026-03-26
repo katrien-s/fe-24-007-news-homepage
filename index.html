@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -18,24 +18,30 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="style.css" />
+		<script src="app.js" defer></script>
 	</head>
 	<body>
 		<header class="wrapper">
 			<img src="/assets/images/logo.svg" alt="" class="img header-logo" />
 			<nav class="nav-functionality" aria-label="main navigation">
 				<label class="hamburger-menu">
-					<input type="checkbox" />
+					<span class="sr-only">Toggle navigation</span>
+					<input
+						type="checkbox"
+						aria-expanded="false"
+						aria-controls="header-navigation"
+					/>
 				</label>
-					<ul class="header-navigation">
-						<li>Home</li>
-						<li>New</li>
-						<li>Popular</li>
-						<li>Trending</li>
-						<li>Categories</li>
-					</ul>
+				<ul class="header-navigation" id="header-navigation">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">New</a></li>
+					<li><a href="#">Popular</a></li>
+					<li><a href="#">Trending</a></li>
+					<li><a href="#">Categories</a></li>
+				</ul>
 			</nav>
 		</header>
-    
+
 		<main class="wrapper">
 			<section class="main-section">
 				<picture>
@@ -57,7 +63,7 @@
 							power of the platforms back into the hands of the people. But is
 							it really fulfilling its promise?
 						</p>
-						<a href="#" class="btn main-btn">Read more</a>
+						<a href="#" class="btn main-btn" role="button">Read more</a>
 					</div>
 				</div>
 			</section>
@@ -87,7 +93,7 @@
 			</section>
 
 			<section class="blog-section">
-				<div class="blog-card">
+				<article class="blog-card">
 					<img
 						src="/assets/images/image-retro-pcs.jpg"
 						alt="Miniature retro computers on a sparsly lit desk"
@@ -100,8 +106,8 @@
 						<h4 class="blog-card__title">Reviving Retro PCs</h4>
 						<p>What happens when old PCs are given modern upgrades?</p>
 					</div>
-				</div>
-				<div class="blog-card">
+				</article>
+				<article class="blog-card">
 					<img
 						src="/assets/images/image-top-laptops.jpg"
 						alt="Detail from a keyboard with red letters"
@@ -114,8 +120,8 @@
 						<h4 class="blog-card__title">Top 10 Laptops of 2024</h4>
 						<p>Our best picks for various needs and budgets.</p>
 					</div>
-				</div>
-				<div class="blog-card">
+				</article>
+				<article class="blog-card">
 					<img
 						src="/assets/images/image-gaming-growth.jpg"
 						alt="White modern game controller"
@@ -128,15 +134,20 @@
 						<h4 class="blog-card__title">The Growth of Gaming</h4>
 						<p>How the pandemic has sparked fresh opportunities.</p>
 					</div>
-				</div>
+				</article>
 			</section>
 		</main>
 
 		<footer class="wrapper attribution">
 			Challenge by
-			<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-				>Frontend Mentor</a
-			>. Coded by Katrien Schuermans.
+			<a
+				href="https://www.frontendmentor.io?ref=challenge"
+				target="_blank"
+				rel="noopener"
+			>
+				Frontend Mentor
+			</a>
+			. Coded by Katrien Schuermans.
 		</footer>
 	</body>
 </html>
