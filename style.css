@@ -438,9 +438,8 @@ h1 {
 /* Section Blog */
 .blog-section {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
-	column-gap: 30px;
-	row-gap: 32px;
+	grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+	gap: 2rem;
 }
 
 .blog-card {
